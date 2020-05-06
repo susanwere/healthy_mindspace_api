@@ -13,7 +13,20 @@ class UsersController < ApplicationController
       token = encode_token({user_id: @user.id})
       render json: {user: @user, token: token}
     else
-      render json: {errors: @user.errors.messages}
+      render json: {error: @user.errors.messages}
+    end
+  end
+
+  def update
+    if current_user
+      @user.update(user_params)
+      if @user.valid?
+        render json: {user: @user} 
+      else 
+        render json: { error: @user.errors.messages }
+      end
+    else
+      render json: {error: "Sorry you can only update your profile"}
     end
   end
 

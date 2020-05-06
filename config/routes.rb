@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   post 'auth/login', to: 'users#login'
   get 'auth/auto_login', to: 'users#auto_login'
   get 'users', to: 'users#index' 
-  get '/users/:id', to: 'users#show'
+  get 'users/:id', to: 'users#show'
+  put 'users/:id', to: 'users#update'
 
   #catch errors
   get '*unmatched_route', to: 'application#not_found'
