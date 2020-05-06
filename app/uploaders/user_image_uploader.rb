@@ -4,7 +4,7 @@ class UserImageUploader < CarrierWave::Uploader::Base
   process tags: ['user_images']
 
   def public_id
-    return "#{model.class.to_s.underscore}/#{model.username}"
+    return "#{model.class.to_s.underscore}/#{Rails.env}/#{model.username}"
   end 
 
   def store_dir

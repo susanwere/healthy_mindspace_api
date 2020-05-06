@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   #catch errors
   get '*unmatched_route', to: 'application#not_found'
+
+  resources :articles, only: [:create]
 end
