@@ -7,8 +7,13 @@ Rails.application.routes.draw do
   get 'users/:id', to: 'users#show'
   put 'users/:id', to: 'users#update'
 
+  resources :articles, only: [:create]
+  get 'articles', to: 'articles#index'
+  get 'articles/topic/anxiety', to: 'articles#anxiety_articles'
+  get 'articles/topic/depression', to: 'articles#depression_articles'
+  get 'articles/topic/lifestyle', to: 'articles#lifestyle_articles'
+  get 'articles/topic/pyschological_analysis', to: 'articles#pyschological_analysis_articles'
+
   #catch errors
   get '*unmatched_route', to: 'application#not_found'
-
-  resources :articles, only: [:create]
 end
