@@ -34,7 +34,9 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
-    return logged_in_user.id == params[:id]
+    if logged_in_user
+      logged_in_user.id == params[:id].to_i
+    end
   end
 
   def authorized

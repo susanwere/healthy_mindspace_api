@@ -1,0 +1,16 @@
+---
+default: &default
+  cloud_name: dhvihx8yx
+  api_key: <%= ENV["HEALTHY_MINDSPACE_CLOUDINARY_API_KEY"] %>
+  api_secret: <%= ENV["HEALTHY_MINDSPACE_CLOUDINARY_API_SECRET"] %>
+  enhance_image_tag: true
+  static_image_support: true
+  secure: true
+development:
+  <<: *default
+
+production:
+  <<: *default
+
+test:
+  <<: *default

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       token = encode_token({user_id: @user.id})
+      @user.reload
       render json: {user: @user, token: token}
     else
       render json: {error: @user.errors.messages}
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
     if current_user
       @user.update(user_params)
       if @user.valid?
+        @user.reload
         render json: {user: @user} 
       else 
         render json: { error: @user.errors.messages }
@@ -53,6 +55,7 @@ class UsersController < ApplicationController
                     id: @user.id,
                     username: @user.username, 
                     email: @user.email,
+                    user_image: @user.user_image,
                     created_at: @user.created_at,
                     updated_at: @user.updated_at
                     }
@@ -64,6 +67,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:username, :email, :password, :password_confirmation)
+    params.permit(:username, :email, :password, :password_confirmation, :user_image)
   end
 end
