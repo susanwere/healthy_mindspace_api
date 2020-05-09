@@ -14,6 +14,25 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def update
+    @article = Article.find(params[:id])
+    if @article.valid?
+      @article.update(article_params)
+      render json: {article: @article}
+    else
+      render json: {error: @article.errors.messages}
+    end
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: "Article does not exist"}
+  end
+
+  def destroy
+    @article = Article.find(params[:id]).delete
+    render json: {success: "#{@article.title} has been deleted successfuly"}
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: "Article does not exist"}
+  end
+
   def anxiety_articles
     @articles = Article.where(topic: 0)
     render json: {articles: @articles}
