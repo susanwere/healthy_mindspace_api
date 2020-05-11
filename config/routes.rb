@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'articles/topic/depression', to: 'articles#depression_articles'
   get 'articles/topic/lifestyle', to: 'articles#lifestyle_articles'
   get 'articles/topic/pyschological_analysis', to: 'articles#pyschological_analysis_articles'
+  put 'articles/:id', to: 'articles#update'
+  delete 'articles/:id', to: 'articles#destroy'
 
   #catch errors
   get '*unmatched_route', to: 'application#not_found'
