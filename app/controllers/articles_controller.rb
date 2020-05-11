@@ -16,8 +16,9 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
+    @article.update(article_params)
     if @article.valid?
-      @article.update(article_params)
+      @article.reload
       render json: {article: @article}
     else
       render json: {error: @article.errors.messages}
@@ -56,7 +57,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.permit(:title, :subtitle, :body, :topic)
+    params.permit(:title, :subtitle, :body, :topic, :article_image)
   end
 
 end
