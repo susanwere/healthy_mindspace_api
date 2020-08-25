@@ -9,6 +9,8 @@ class Article < ApplicationRecord
     pyschological_analysis: 3
   }
 
+  validate_enum_attribute :topic
+
   mount_uploader :article_image, ArticleImageUploader
 
 end
