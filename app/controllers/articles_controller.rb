@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :authorized, only: [:create]
 
   def index
     @articles = Article.all
@@ -58,6 +59,7 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.permit(:title, :subtitle, :body, :topic, :article_image)
+          .merge(created_by: logged_in_user.try(:username))
   end
 
 end
