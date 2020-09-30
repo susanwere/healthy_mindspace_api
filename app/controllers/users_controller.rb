@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       @user.reload
       render json: {user: @user, token: token}
     else
-      render json: {error: @user.errors.messages}
+      render json: {error: @user.errors.messages}, status: :unprocessable_entity
     end
   end
 
