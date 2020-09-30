@@ -11,8 +11,14 @@ class ArticlesController < ApplicationController
     if @article.valid?
       render json: {article: @article}
     else
-      render json: {error: @article.errors.messages}
+      render json: {error: @article.errors.messages}, status: :unprocessable_entity
     end
+  end
+
+  def get
+    @article = Article.find(params[:id])
+    render json: {article: @article}
+  rescue ActiveRecord::RecordNotFound
   end
 
   def update
@@ -58,7 +64,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.permit(:title, :subtitle, :body, :topic, :article_image)
+    params.permit(:text_content, :editor_content, :topic, :article_image)
           .merge(created_by: logged_in_user.try(:username))
   end
 

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :articles, only: [:create]
   get 'articles', to: 'articles#index'
+  get 'articles/:id', to: 'articles#get'
   get 'articles/topic/anxiety', to: 'articles#anxiety_articles'
   get 'articles/topic/depression', to: 'articles#depression_articles'
   get 'articles/topic/lifestyle', to: 'articles#lifestyle_articles'
