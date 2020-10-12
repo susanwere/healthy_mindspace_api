@@ -8,6 +8,4 @@ class Article < ApplicationRecord
 
   validate_enum_attribute :topic
 
-  mount_uploader :article_image, ArticleImageUploader
-
 end

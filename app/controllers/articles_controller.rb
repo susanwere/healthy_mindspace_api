@@ -64,7 +64,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.permit(:text_content, :editor_content, :topic, :article_image)
+    params.permit(:title, :text_content, :topic, :article_image)
           .merge(created_by: logged_in_user.try(:username))
   end
 
